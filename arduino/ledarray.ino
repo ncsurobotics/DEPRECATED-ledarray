@@ -1,5 +1,5 @@
 void setup() {
-   for(int x = 1; x < 13; x++) {
+   for(int x = 2; x < 14; x++) {
        pinMode(x, OUTPUT);
    }
 }
@@ -58,54 +58,45 @@ void parse_data(int* data) {
  * If that's not needed anymore, let me know.  Will reassign to other tasks
  */
 void alignment() {
-  digitalWrite(1, HIGH);
   digitalWrite(2, HIGH);
-  digitalWrite(4, HIGH);
+  digitalWrite(3, HIGH);
+  digitalWrite(5, HIGH);
 }
 
-/* Turns on pins on the right side of the array. Pins 3 and 6
- * are lipo battery life, pins 9 and 12 are lead acid.
+/* Turns on pins on the right side of the array. Pins 4 and 7
+ * are lipo battery life, pins 10 and 13 are lead acid.
  * Parameters: if battery life is high, input 1.  Else, 0.
  *    If value is for lipo battery, 1.  Else 0.
  */
 void battery_life(int value, int lipo) {
   if(value && lipo) {
-     digitalWrite(3, HIGH);
-     digitalWrite(6, LOW);
+     digitalWrite(4, HIGH);
+     digitalWrite(7, LOW);
   }
   else if(!value && lipo) {
-     digitalWrite(3, LOW);
-     digitalWrite(6, HIGH);
+     digitalWrite(4, LOW);
+     digitalWrite(7, HIGH);
   }
   else if(value && !lipo) {
-     digitalWrite(9, HIGH);
-     digitalWrite(12, LOW);
+     digitalWrite(10, HIGH);
+     digitalWrite(13, LOW);
   } else {
-     digitalWrite(9, LOW);
-     digitalWrite(12, HIGH); 
+     digitalWrite(10, LOW);
+     digitalWrite(13, HIGH); 
   }
 }
 
-/* Turns on pin 5 if a hedge is seen */
+/* Turns on pin 6 if a hedge is seen */
 void hedge_seen(int value) {
    if(value) {
-      digitalWrite(5, HIGH);
+      digitalWrite(6, HIGH);
    } else {
-      digitalWrite(5, LOW);
+      digitalWrite(6, LOW);
    } 
 }
 
-/* Turns on pin 7 if gate is seen */
+/* Turns on pin 8 if gate is seen */
 void gate_seen(int value) {
-   if(value) {
-      digitalWrite(7, HIGH);
-   } else {
-      digitalWrite(7, LOW);
-   } 
-}
-
-/* Turns on pin 8 if a bin is seen */
-void bin_seen(int value) {
    if(value) {
       digitalWrite(8, HIGH);
    } else {
@@ -113,20 +104,29 @@ void bin_seen(int value) {
    } 
 }
 
-/* Turns on pin 10 if a path is seen */
-void path_seen(int value) {
+/* Turns on pin 9 if a bin is seen */
+void bin_seen(int value) {
    if(value) {
-      digitalWrite(10, HIGH);
+      digitalWrite(9, HIGH);
    } else {
-      digitalWrite(10, LOW);
+      digitalWrite(9, LOW);
    } 
 }
 
-/* Turns on pin 11 if a buoy is seen */
-void buoy_seen(int value) {
+/* Turns on pin 11 if a path is seen */
+void path_seen(int value) {
    if(value) {
       digitalWrite(11, HIGH);
    } else {
       digitalWrite(11, LOW);
+   } 
+}
+
+/* Turns on pin 12 if a buoy is seen */
+void buoy_seen(int value) {
+   if(value) {
+      digitalWrite(12, HIGH);
+   } else {
+      digitalWrite(12, LOW);
    } 
 }
